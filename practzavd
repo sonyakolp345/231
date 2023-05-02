@@ -1,0 +1,63 @@
+using System;
+
+public class CountryMedal
+{
+    private string name;
+    private int numAthletes;
+    private int numMedals;
+
+    // Конструктор по умолчанию
+    public CountryMedal()
+    {
+        name = "";
+        numAthletes = 0;
+        numMedals = 0;
+    }
+
+    // Конструктор с параметрами
+    public CountryMedal(string n, int athletes, int medals)
+    {
+        name = n;
+        numAthletes = athletes;
+        numMedals = medals;
+    }
+
+    // Метод для формирования строки с информацией об объекте
+    public string GetInfo()
+    {
+        return "Country: " + name + ", number of athletes: " + numAthletes + ", number of medals: " + numMedals;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        const int numCountries = 3; // Количество стран в списке
+        CountryMedal[] countries = new CountryMedal[numCountries]; // Создание массива объектов класса CountryMedal
+
+        // Заполнение информации о странах
+        for (int i = 0; i < numCountries; i++)
+        {
+            string name;
+            int numAthletes, numMedals;
+
+            Console.Write("Enter the name of the country: ");
+            name = Console.ReadLine();
+
+            Console.Write("Enter the number of athletes: ");
+            numAthletes = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the number of medals: ");
+            numMedals = int.Parse(Console.ReadLine());
+
+            countries[i] = new CountryMedal(name, numAthletes, numMedals);
+        }
+
+        // Вывод информации о странах
+        for (int i = 0; i < numCountries; i++)
+        {
+            Console.WriteLine(countries[i].GetInfo());
+        }
+    }
+}
