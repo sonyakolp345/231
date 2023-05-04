@@ -1,0 +1,74 @@
+using System;
+
+abstract class Animal {
+    public string Name { get; set; }
+    public string Species { get; set; }
+    public string Habitat { get; set; }
+
+    public virtual void PrintInfo() {
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Species: {Species}");
+        Console.WriteLine($"Habitat: {Habitat}");
+    }
+}
+
+class Mammal : Animal {
+    public enum DietType { Herbivore, Carnivore, Omnivore }
+    public DietType Diet { get; set; }
+
+    public override void PrintInfo() {
+        base.PrintInfo();
+        Console.WriteLine($"Diet: {Diet}");
+    }
+}
+
+class Fish : Animal {
+    public enum WaterType { Freshwater, Marine }
+    public WaterType Type { get; set; }
+
+    public override void PrintInfo() {
+        base.PrintInfo();
+        Console.WriteLine($"Water Type: {Type}");
+    }
+}
+
+class Bird : Animal {
+    public enum BirdType { Wild, Domestic }
+    public BirdType Type { get; set; }
+    public bool IsMigratory { get; set; }
+
+    public override void PrintInfo() {
+        base.PrintInfo();
+        Console.WriteLine($"Bird Type: {Type}");
+        Console.WriteLine($"Is Migratory: {IsMigratory}");
+    }
+}
+
+class Program {
+    static void Main(string[] args) {
+        Mammal lion = new Mammal {
+            Name = "Lion",
+            Species = "Panthera leo",
+            Habitat = "Grasslands",
+            Diet = Mammal.DietType.Carnivore
+        };
+        lion.PrintInfo();
+
+        Fish salmon = new Fish {
+            Name = "Salmon",
+            Species = "Salmo salar",
+            Habitat = "Rivers",
+            Type = Fish.WaterType.Freshwater
+        };
+        salmon.PrintInfo();
+
+        Bird goose = new Bird {
+            Name = "Goose",
+            Species = "Anser anser",
+            Habitat = "Wetlands",
+            Type = Bird.BirdType.Wild,
+            IsMigratory = true
+        };
+        goose.PrintInfo();
+    }
+}
